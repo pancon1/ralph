@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  /* Bob.io brand palette — bright, sunny, friendly (the opposite of Klap's dark/techy look) */
+  --cream: #faf7ef;
+  --cream-deep: #f1ecdd;
+  --ink: #15140d;
+  --ink-soft: #4a4838;
+  --lime: #c8f750;
+  --lime-deep: #aee62f;
+  --coral: #ff6b4a;
+  --sky: #5ac8fa;
+  --card: #ffffff;
+  --border: #1514140f;
+
+  --background: var(--cream);
+  --foreground: var(--ink);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-lime: var(--lime);
+  --color-lime-deep: var(--lime-deep);
+  --color-coral: var(--coral);
+  --color-sky: var(--sky);
+  --color-card: var(--card);
+  --font-sans: var(--font-jakarta);
+  --font-display: var(--font-bricolage);
+}
+
+* {
+  border-color: color-mix(in srgb, var(--ink) 10%, transparent);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.font-display {
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Elegant layered shadows — soft, multi-stop elevation */
+.shadow-soft {
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--ink) 4%, transparent),
+    0 8px 24px color-mix(in srgb, var(--ink) 6%, transparent);
+}
+.shadow-float {
+  box-shadow:
+    0 2px 4px color-mix(in srgb, var(--ink) 5%, transparent),
+    0 18px 50px color-mix(in srgb, var(--ink) 10%, transparent);
+}
+
+/* Frosted-glass surface */
+.glass {
+  background: color-mix(in srgb, var(--card) 70%, transparent);
+  backdrop-filter: blur(14px) saturate(1.3);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+}
+
+/* Decorative grain / texture helpers — subtle */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--ink) 3.5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--ink) 3.5%, transparent) 1px, transparent 1px);
+  background-size: 52px 52px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 55%, transparent 100%);
+}
+
+/* Warm radial wash for hero / section backdrops */
+.bg-wash {
+  background:
+    radial-gradient(60% 50% at 15% 0%, color-mix(in srgb, var(--lime) 22%, transparent), transparent 70%),
+    radial-gradient(50% 45% at 95% 20%, color-mix(in srgb, var(--coral) 16%, transparent), transparent 70%);
+}
+
+/* Gradient text accent */
+.text-gradient {
+  background: linear-gradient(100deg, var(--ink), color-mix(in srgb, var(--ink) 55%, var(--coral)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.animate-float { animation: float 5s ease-in-out infinite; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 26s linear infinite; }
+
+@keyframes blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+.animate-blink { animation: blink 4s ease-in-out infinite; transform-origin: center; }
