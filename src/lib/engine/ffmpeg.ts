@@ -121,7 +121,12 @@ export async function cutVerticalClip(opts: {
   const { videoPath, start, end, outPath, assPath } = opts;
   const duration = Math.max(1, end - start);
 
-  let vf = "crop=ih*9/16:ih,scale=1080:1920";
+  // Output resolution — kept modest so encoding fits low-resource hosts
+  // (e.g. Render free tier: ~0.1 CPU / 512MB). Override with BOB_CLIP_HEIGHT.
+  const h = parseInt(process.env.BOB_CLIP_HEIGHT || "1280", 10);
+  const w = Math.round((h * 9) / 16 / 2) * 2; // keep even width for yuv420p
+
+  let vf = `crop=ih*9/16:ih,scale=${w}:${h}`;
   if (assPath) {
     // ffmpeg filter paths need escaped backslashes and colons on Windows
     const escaped = assPath.replace(/\\/g, "/").replace(/:/g, "\\:");
@@ -141,13 +146,17 @@ export async function cutVerticalClip(opts: {
     "-c:v",
     "libx264",
     "-preset",
-    "veryfast",
+    "ultrafast",
     "-crf",
-    "23",
+    "26",
+    "-threads",
+    "1",
+    "-pix_fmt",
+    "yuv420p",
     "-c:a",
     "aac",
     "-b:a",
-    "128k",
+    "96k",
     "-movflags",
     "+faststart",
     outPath,
