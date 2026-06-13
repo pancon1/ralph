@@ -52,6 +52,7 @@ export type Job = {
   source: string; // url or filename
   message?: string;
   error?: string;
+  storage?: string; // diagnostic: "cloud ✓", "local (non configuré)", or "échec: ..."
   clips: RenderedClip[];
   createdAt: number;
 };

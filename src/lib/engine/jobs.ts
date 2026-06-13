@@ -6,7 +6,7 @@ import { downloadVideo, saveUpload } from "./download";
 import { extractAudio, buildAss, cutVerticalClip } from "./ffmpeg";
 import { transcribe } from "./transcribe";
 import { findMoments } from "./moments";
-import { uploadClip } from "./storage";
+import { uploadClip, isStorageConfigured } from "./storage";
 import type { Job, JobStage, RenderedClip } from "./types";
 
 // Job state is persisted to disk so it survives dev hot-reloads and is shared
@@ -202,12 +202,20 @@ async function runPipeline(id: string, input: { url?: string; file?: File }) {
       // Permanent storage if configured; otherwise serve from local disk.
       const localUrl = `/clips/${id}/${fileName}`;
       let url = localUrl;
-      try {
-        const uploaded = await uploadClip(outPath, `${id}/${fileName}`);
-        if (uploaded) url = uploaded;
-      } catch {
-        // upload failed — keep the local URL so the clip is still usable
+      let storageNote: string;
+      if (!isStorageConfigured()) {
+        storageNote = "local (cloud non configuré)";
+      } else {
+        try {
+          const uploaded = await uploadClip(outPath, `${id}/${fileName}`);
+          url = uploaded ?? localUrl;
+          storageNote = "cloud ✓";
+        } catch (e) {
+          // upload failed — keep the local URL so the clip is still usable
+          storageNote = `échec: ${e instanceof Error ? e.message : String(e)}`.slice(0, 200);
+        }
       }
+      await patch(id, { storage: storageNote });
 
       clips.push({
         ...m,
