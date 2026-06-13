@@ -6,6 +6,7 @@ import { downloadVideo, saveUpload } from "./download";
 import { extractAudio, buildAss, cutVerticalClip } from "./ffmpeg";
 import { transcribe } from "./transcribe";
 import { findMoments } from "./moments";
+import { uploadClip } from "./storage";
 import type { Job, JobStage, RenderedClip } from "./types";
 
 // Job state is persisted to disk so it survives dev hot-reloads and is shared
@@ -198,10 +199,20 @@ async function runPipeline(id: string, input: { url?: string; file?: File }) {
         await cutVerticalClip({ videoPath, start: m.start, end: m.end, outPath });
       }
 
+      // Permanent storage if configured; otherwise serve from local disk.
+      const localUrl = `/clips/${id}/${fileName}`;
+      let url = localUrl;
+      try {
+        const uploaded = await uploadClip(outPath, `${id}/${fileName}`);
+        if (uploaded) url = uploaded;
+      } catch {
+        // upload failed — keep the local URL so the clip is still usable
+      }
+
       clips.push({
         ...m,
         id: `${id}-${i + 1}`,
-        url: `/clips/${id}/${fileName}`,
+        url,
         duration: mmss(m.end - m.start),
         startLabel: mmss(m.start),
       });

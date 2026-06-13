@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 import path from "node:path";
 import ffmpegStatic from "ffmpeg-static";
+import { isStorageConfigured } from "@/lib/engine/storage";
 
 export type HealthCheck = {
   key: string;
@@ -71,6 +72,14 @@ export async function getSystemHealth(): Promise<SystemHealth> {
       label: "yt-dlp (téléchargement)",
       ok: existsSync(ytDlp),
       detail: existsSync(ytDlp) ? "Binaire présent" : "Introuvable",
+    },
+    {
+      key: "storage",
+      label: "Stockage des clips",
+      ok: true, // local fallback always works; cloud is an upgrade, not a requirement
+      detail: isStorageConfigured()
+        ? "Permanent (cloud) ✓"
+        : "Local — temporaire (configure le cloud pour le rendre permanent)",
     },
   ];
 
