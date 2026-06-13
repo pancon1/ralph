@@ -11,7 +11,9 @@ import type { Job, JobStage, RenderedClip } from "./types";
 // Job state is persisted to disk so it survives dev hot-reloads and is shared
 // across route handlers. (A serverless deploy would swap this for a DB/queue.)
 const JOBS_DIR = path.join(process.cwd(), ".bob-jobs");
-const PUBLIC_CLIPS = path.join(process.cwd(), "public", "clips");
+// Clips live outside public/ — next start doesn't reliably serve files written
+// to public/ after build, so they're served by the /clips/[id]/[file] route.
+const CLIPS_DIR = path.join(process.cwd(), ".bob-clips");
 
 const memory = new Map<string, Job>();
 
@@ -140,7 +142,7 @@ export function startPipeline(id: string, input: { url?: string; file?: File }) 
 
 async function runPipeline(id: string, input: { url?: string; file?: File }) {
   const workDir = path.join(os.tmpdir(), "bob-io", id);
-  const outDir = path.join(PUBLIC_CLIPS, id);
+  const outDir = path.join(CLIPS_DIR, id);
   await mkdir(outDir, { recursive: true });
 
   try {

@@ -47,3 +47,6 @@ next-env.d.ts
 
 # Bob.io job state
 /.bob-jobs/
+
+# Bob.io generated clips (served via /clips route)
+/.bob-clips/
