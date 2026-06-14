@@ -11,18 +11,31 @@ import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
  * on free hosts.
  */
 
-function config() {
-  const endpoint = process.env.BOB_S3_ENDPOINT;
-  const bucket = process.env.BOB_S3_BUCKET;
-  const accessKeyId = process.env.BOB_S3_ACCESS_KEY_ID;
-  const secretAccessKey = process.env.BOB_S3_SECRET_ACCESS_KEY;
-  const publicUrl = process.env.BOB_S3_PUBLIC_URL;
-  const region = process.env.BOB_S3_REGION || "auto";
+// Add https:// if the user pasted a bare host (a common mistake).
+function withScheme(value: string): string {
+  const v = value.trim();
+  return /^https?:\/\//i.test(v) ? v : `https://${v}`;
+}
 
-  if (!endpoint || !bucket || !accessKeyId || !secretAccessKey || !publicUrl) {
+function config() {
+  const rawEndpoint = process.env.BOB_S3_ENDPOINT;
+  const bucket = process.env.BOB_S3_BUCKET?.trim();
+  const accessKeyId = process.env.BOB_S3_ACCESS_KEY_ID?.trim();
+  const secretAccessKey = process.env.BOB_S3_SECRET_ACCESS_KEY?.trim();
+  const rawPublicUrl = process.env.BOB_S3_PUBLIC_URL;
+  const region = process.env.BOB_S3_REGION?.trim() || "auto";
+
+  if (!rawEndpoint || !bucket || !accessKeyId || !secretAccessKey || !rawPublicUrl) {
     return null;
   }
-  return { endpoint, bucket, accessKeyId, secretAccessKey, publicUrl, region };
+  return {
+    endpoint: withScheme(rawEndpoint),
+    bucket,
+    accessKeyId,
+    secretAccessKey,
+    publicUrl: withScheme(rawPublicUrl),
+    region,
+  };
 }
 
 export function isStorageConfigured(): boolean {
