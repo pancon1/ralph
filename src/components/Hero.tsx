@@ -4,7 +4,7 @@ import BobMascot from "./BobMascot";
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-wash">
-      <div className="absolute inset-0 bg-grid" />
+      <div className="absolute inset-0 bg-grid-fade" />
       {/* soft color blobs */}
       <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-lime/30 blur-3xl" />
       <div className="pointer-events-none absolute -right-20 top-40 h-72 w-72 rounded-full bg-coral/20 blur-3xl" />

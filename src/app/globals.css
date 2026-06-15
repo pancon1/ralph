@@ -69,8 +69,17 @@ body {
   -webkit-backdrop-filter: blur(14px) saturate(1.3);
 }
 
-/* Decorative grain / texture helpers — subtle */
+/* Decorative grid texture — subtle, uniform (no mask so it never fades content) */
 .bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--ink) 3.5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--ink) 3.5%, transparent) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+/* Faded variant — only for decorative background layers (e.g. the hero),
+   never on a container that holds content (the mask fades children too). */
+.bg-grid-fade {
   background-image:
     linear-gradient(to right, color-mix(in srgb, var(--ink) 3.5%, transparent) 1px, transparent 1px),
     linear-gradient(to bottom, color-mix(in srgb, var(--ink) 3.5%, transparent) 1px, transparent 1px);
