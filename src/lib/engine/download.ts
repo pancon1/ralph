@@ -80,14 +80,17 @@ export async function downloadVideo(
   }
 
   // yt-dlp needs a JS runtime to extract YouTube formats ("No video formats
-  // found!" without one). Point it at the bundled Deno binary.
+  // found!" without one). Point it at the bundled Deno binary, and also put its
+  // folder on PATH (yt-dlp auto-detects deno from PATH).
   const deno = denoRuntime();
+  const env = { ...process.env };
   if (deno) {
     args.push("--js-runtimes", `deno:${deno}`);
+    env.PATH = `${path.dirname(deno)}${path.delimiter}${env.PATH ?? ""}`;
   }
 
   await new Promise<void>((resolve, reject) => {
-    const proc = spawn(bin, args, { windowsHide: true });
+    const proc = spawn(bin, args, { windowsHide: true, env });
     let stderr = "";
     proc.stderr.on("data", (d) => (stderr += d.toString()));
     proc.on("error", reject);
