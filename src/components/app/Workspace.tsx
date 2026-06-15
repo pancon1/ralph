@@ -174,6 +174,10 @@ function IdleView({
           placeholder="https://youtube.com/watch?v=…"
           className="mt-2 w-full rounded-full border border-ink/15 bg-cream px-5 py-3 text-sm outline-none transition-colors focus:border-ink"
         />
+        <p className="mt-2 text-xs text-ink-soft">
+          ⚠️ Les liens YouTube peuvent être bloqués (YouTube refuse les serveurs).
+          Pour un résultat fiable, importe ton fichier ci-dessous.
+        </p>
 
         <div className="my-5 flex items-center gap-3 text-xs font-semibold uppercase tracking-wide text-ink-soft">
           <span className="h-px flex-1 bg-ink/10" />

@@ -50,8 +50,17 @@ export async function downloadVideo(
     proc.stderr.on("data", (d) => (stderr += d.toString()));
     proc.on("error", reject);
     proc.on("close", (code) => {
-      if (code === 0) resolve();
-      else reject(new Error(`yt-dlp exited ${code}: ${stderr.slice(-600)}`));
+      if (code === 0) return resolve();
+      // YouTube blocks downloads from datacenter IPs — give a clear, actionable message.
+      if (/sign in to confirm|not a bot|bot|cookies/i.test(stderr)) {
+        return reject(
+          new Error(
+            "YouTube bloque les téléchargements depuis le serveur. " +
+              "Importe plutôt ton fichier vidéo avec le bouton 📁 (ça fonctionne parfaitement)."
+          )
+        );
+      }
+      reject(new Error(`Échec du téléchargement : ${stderr.slice(-300)}`));
     });
   });
 
