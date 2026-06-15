@@ -35,7 +35,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <Link
-            href="/app"
+            href="/login"
             className="hidden rounded-full px-4 py-2 text-sm font-semibold text-ink transition-colors hover:bg-ink/5 sm:block"
           >
             Se connecter

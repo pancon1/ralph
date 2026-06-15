@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createJob, startPipeline } from "@/lib/engine/jobs";
+import { getUser } from "@/lib/supabase/server";
 
 export const runtime = "nodejs";
 export const maxDuration = 800;
@@ -29,7 +30,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const job = await createJob(file ? file.name : url!);
+    const user = await getUser();
+    const job = await createJob(file ? file.name : url!, user?.id);
     startPipeline(job.id, { url, file });
 
     return NextResponse.json({ id: job.id, stage: job.stage });

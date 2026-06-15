@@ -7,6 +7,7 @@ import { extractAudio, buildAss, cutVerticalClip } from "./ffmpeg";
 import { transcribe } from "./transcribe";
 import { findMoments } from "./moments";
 import { uploadClip, isStorageConfigured } from "./storage";
+import { createAdminClient } from "@/lib/supabase/admin";
 import type { Job, JobStage, RenderedClip } from "./types";
 
 // Job state is persisted to disk so it survives dev hot-reloads and is shared
@@ -117,9 +118,13 @@ async function setStage(id: string, stage: JobStage, message?: string) {
   await patch(id, { stage, progress: STAGE_PROGRESS[stage], message });
 }
 
-export async function createJob(source: string): Promise<Job> {
+export async function createJob(
+  source: string,
+  userId?: string
+): Promise<Job> {
   const job: Job = {
     id: randomUUID(),
+    userId,
     stage: "queued",
     progress: 2,
     source,
@@ -232,7 +237,35 @@ async function runPipeline(id: string, input: { url?: string; file?: File }) {
     }
 
     await patch(id, { stage: "done", progress: 100, clips, message: undefined });
+
+    // Save clips to the owner's history (when accounts are enabled).
+    const job = memory.get(id) ?? (await getJob(id));
+    if (job?.userId) {
+      await saveClipsForUser(job.userId, id, clips).catch(() => {});
+    }
   } finally {
     await rm(workDir, { recursive: true, force: true }).catch(() => {});
   }
+}
+
+async function saveClipsForUser(
+  userId: string,
+  jobId: string,
+  clips: RenderedClip[]
+) {
+  const admin = createAdminClient();
+  if (!admin || !clips.length) return;
+  await admin.from("clips").insert(
+    clips.map((c) => ({
+      user_id: userId,
+      job_id: jobId,
+      title: c.title,
+      caption: c.caption,
+      url: c.url,
+      duration: c.duration,
+      start_label: c.startLabel,
+      score: c.score,
+      hashtags: c.hashtags,
+    }))
+  );
 }

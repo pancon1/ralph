@@ -47,6 +47,7 @@ export type RenderedClip = Moment & {
 
 export type Job = {
   id: string;
+  userId?: string; // owner, when accounts are enabled
   stage: JobStage;
   progress: number; // 0-100
   source: string; // url or filename
