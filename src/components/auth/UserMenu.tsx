@@ -18,7 +18,7 @@ export default function UserMenu({ email }: { email: string }) {
   return (
     <div className="flex items-center gap-2">
       <span
-        className="grid h-9 w-9 place-items-center rounded-full bg-coral/90 text-sm font-bold text-cream"
+        className="grid h-9 w-9 place-items-center rounded-full bg-coral/90 text-sm font-bold text-ink"
         title={email}
       >
         {initial}

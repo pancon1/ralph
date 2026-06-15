@@ -11,13 +11,13 @@ const ITEMS = [
 
 export default function Marquee() {
   return (
-    <div className="border-y border-ink/10 bg-ink py-4">
+    <div className="border-y border-ink/10 bg-panel py-4">
       <div className="flex overflow-hidden">
         <div className="flex shrink-0 animate-marquee items-center gap-10 pr-10">
           {[...ITEMS, ...ITEMS].map((item, i) => (
             <span
               key={i}
-              className="flex items-center gap-3 whitespace-nowrap font-display text-lg font-bold text-cream"
+              className="flex items-center gap-3 whitespace-nowrap font-display text-lg font-bold text-ink"
             >
               {item}
               <span className="text-lime">✦</span>

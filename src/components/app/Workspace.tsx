@@ -208,7 +208,7 @@ function IdleView({
         <button
           onClick={onStart}
           disabled={!canStart}
-          className="mt-6 w-full rounded-full bg-ink py-4 text-base font-semibold text-lime shadow-soft transition-transform enabled:hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none"
+          className="mt-6 w-full rounded-full bg-lime py-4 text-base font-semibold text-panel shadow-soft transition-transform enabled:hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none"
         >
           ✂️ Générer mes clips
         </button>
@@ -312,7 +312,7 @@ function ResultsView({
         </div>
         <button
           onClick={onReset}
-          className="rounded-full border-2 border-ink px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-ink hover:text-cream"
+          className="rounded-full border border-ink/20 px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-panel hover:text-ink"
         >
           + Nouvelle vidéo
         </button>
@@ -341,7 +341,7 @@ function ErrorView({ message, onReset }: { message: string; onReset: () => void 
       </p>
       <button
         onClick={onReset}
-        className="mt-6 rounded-full bg-ink px-6 py-3 font-semibold text-lime shadow-soft transition-transform hover:-translate-y-0.5"
+        className="mt-6 rounded-full bg-lime px-6 py-3 font-semibold text-panel shadow-soft transition-transform hover:-translate-y-0.5"
       >
         Réessayer
       </button>

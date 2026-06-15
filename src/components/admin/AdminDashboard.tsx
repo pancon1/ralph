@@ -85,13 +85,13 @@ export default function AdminDashboard() {
       <header className="sticky top-0 z-40 border-b border-ink/10 bg-cream/85 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
           <div className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-ink text-lime font-display text-lg font-semibold">
+            <span className="grid h-9 w-9 place-items-center rounded-xl bg-lime text-panel font-display text-lg font-semibold">
               B
             </span>
             <span className="font-display text-xl font-semibold">
               Bob<span className="text-coral">.io</span>
             </span>
-            <span className="ml-1 rounded-full bg-coral/90 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cream">
+            <span className="ml-1 rounded-full bg-coral/90 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-ink">
               Admin
             </span>
           </div>
@@ -180,7 +180,7 @@ function HealthPanel({ health }: { health: Health }) {
         <h2 className="font-display text-xl font-bold">État du système</h2>
         <span
           className={`rounded-full px-3 py-1 text-xs font-bold ${
-            health.allOk ? "bg-lime text-ink" : "bg-coral/90 text-cream"
+            health.allOk ? "bg-lime text-panel" : "bg-coral/90 text-panel"
           }`}
         >
           {health.allOk ? "Tout va bien" : "Attention"}
@@ -231,10 +231,10 @@ function GuardianPanel() {
   const risk = report?.riskLevel;
   const riskStyle =
     risk === "urgent"
-      ? "bg-coral/90 text-cream"
+      ? "bg-coral/90 text-panel"
       : risk === "attention"
       ? "bg-[#ffd23d] text-ink"
-      : "bg-lime text-ink";
+      : "bg-lime text-panel";
 
   return (
     <section className="rounded-3xl border border-ink/10 bg-card p-6">
@@ -262,7 +262,7 @@ function GuardianPanel() {
           <button
             onClick={scan}
             disabled={scanning}
-            className="mt-4 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-lime shadow-soft transition-transform enabled:hover:-translate-y-0.5 disabled:opacity-50"
+            className="mt-4 rounded-full bg-lime px-6 py-3 text-sm font-semibold text-panel shadow-soft transition-transform enabled:hover:-translate-y-0.5 disabled:opacity-50"
           >
             {scanning ? "Analyse en cours…" : "🔍 Lancer un scan"}
           </button>
@@ -356,9 +356,9 @@ function RecentJobsPanel({ jobs }: { jobs: RecentJob[] }) {
                     <span
                       className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
                         j.stage === "done"
-                          ? "bg-lime text-ink"
+                          ? "bg-lime text-panel"
                           : j.stage === "error"
-                          ? "bg-coral/90 text-cream"
+                          ? "bg-coral/90 text-panel"
                           : "bg-cream-deep text-ink-soft"
                       }`}
                     >

@@ -12,7 +12,7 @@ export default function Navbar() {
     <header className="glass sticky top-0 z-50 border-b border-ink/10">
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
         <Link href="/" className="flex items-center gap-2.5">
-          <span className="grid h-9 w-9 place-items-center rounded-full bg-ink text-lime font-display text-lg font-bold">
+          <span className="grid h-9 w-9 place-items-center rounded-full bg-lime text-panel font-display text-lg font-bold">
             B
           </span>
           <span className="font-display text-2xl font-bold">
@@ -42,7 +42,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/app"
-            className="rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-lime shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-float"
+            className="rounded-full bg-lime px-5 py-2.5 text-sm font-semibold text-panel shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-float"
           >
             Essayer gratuitement
           </Link>

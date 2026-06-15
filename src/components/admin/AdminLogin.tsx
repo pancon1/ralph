@@ -57,7 +57,7 @@ export default function AdminLogin() {
         <button
           type="submit"
           disabled={loading || !password}
-          className="mt-5 w-full rounded-full bg-ink py-3.5 text-sm font-semibold text-lime shadow-soft transition-transform enabled:hover:-translate-y-0.5 disabled:opacity-40 disabled:shadow-none"
+          className="mt-5 w-full rounded-full bg-lime py-3.5 text-sm font-semibold text-panel shadow-soft transition-transform enabled:hover:-translate-y-0.5 disabled:opacity-40 disabled:shadow-none"
         >
           {loading ? "Connexion…" : "Se connecter"}
         </button>

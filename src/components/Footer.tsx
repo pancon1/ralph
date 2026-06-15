@@ -17,7 +17,7 @@ export default function Footer() {
         </p>
         <Link
           href="/app"
-          className="mt-8 inline-block rounded-full bg-ink px-8 py-4 text-lg font-semibold text-lime shadow-soft transition-transform hover:-translate-y-0.5"
+          className="mt-8 inline-block rounded-full bg-lime px-8 py-4 text-lg font-semibold text-panel shadow-soft transition-transform hover:-translate-y-0.5"
         >
           Découper ma vidéo gratuitement →
         </Link>
@@ -27,7 +27,7 @@ export default function Footer() {
       <div className="border-t border-ink/10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-8 sm:flex-row">
           <div className="flex items-center gap-2">
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-ink text-lime font-display font-semibold">
+            <span className="grid h-8 w-8 place-items-center rounded-lg bg-lime text-panel font-display font-semibold">
               B
             </span>
             <span className="font-display text-lg font-semibold">

@@ -61,7 +61,7 @@ export default async function MesClipsPage() {
           </div>
           <Link
             href="/app"
-            className="rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-lime shadow-soft transition-transform hover:-translate-y-0.5"
+            className="rounded-full bg-lime px-5 py-2.5 text-sm font-semibold text-panel shadow-soft transition-transform hover:-translate-y-0.5"
           >
             + Nouvelle vidéo
           </Link>

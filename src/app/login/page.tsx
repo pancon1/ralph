@@ -22,7 +22,7 @@ export default async function LoginPage() {
           </p>
           <Link
             href="/app"
-            className="mt-6 inline-block rounded-full bg-ink px-6 py-3 font-semibold text-lime"
+            className="mt-6 inline-block rounded-full bg-lime px-6 py-3 font-semibold text-panel"
           >
             Aller à l&apos;atelier
           </Link>

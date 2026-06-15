@@ -30,15 +30,15 @@ export default function ClipCard({ clip }: { clip: ClipView }) {
 
   const scoreColor =
     clip.score >= 90
-      ? "bg-lime text-ink"
+      ? "bg-lime text-panel"
       : clip.score >= 80
-      ? "bg-sky text-ink"
+      ? "bg-sky text-panel"
       : "bg-cream-deep text-ink";
 
   return (
     <div className="group overflow-hidden rounded-3xl border border-ink/10 bg-card transition-transform hover:-translate-y-1">
       {/* vertical video player */}
-      <div className="relative aspect-[9/16] overflow-hidden bg-ink">
+      <div className="relative aspect-[9/16] overflow-hidden bg-panel">
         <video
           src={clip.url}
           controls
@@ -47,7 +47,7 @@ export default function ClipCard({ clip }: { clip: ClipView }) {
           className="h-full w-full object-cover"
         />
         <div className="pointer-events-none absolute left-3 top-3 flex w-[calc(100%-1.5rem)] items-center justify-between">
-          <span className="rounded-lg bg-ink/80 px-2 py-1 text-[11px] font-bold text-cream">
+          <span className="rounded-lg bg-panel/80 px-2 py-1 text-[11px] font-bold text-ink">
             {clip.startLabel} · {clip.duration}
           </span>
           <span className={`rounded-lg px-2 py-1 text-[11px] font-semibold ${scoreColor}`}>
@@ -79,7 +79,7 @@ export default function ClipCard({ clip }: { clip: ClipView }) {
           <a
             href={clip.url}
             download={`${clip.title}.mp4`}
-            className="flex-1 rounded-full bg-ink py-2 text-center text-sm font-semibold text-lime transition-transform hover:-translate-y-0.5"
+            className="flex-1 rounded-full bg-lime py-2 text-center text-sm font-semibold text-panel transition-transform hover:-translate-y-0.5"
           >
             ⬇ Télécharger
           </a>

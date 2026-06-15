@@ -1,12 +1,15 @@
 import Link from "next/link";
 import BobMascot from "./BobMascot";
+import { Orb, Waveform, OrbitRings, Constellation } from "./Decor";
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-wash">
       <div className="absolute inset-0 bg-grid-fade" />
-      <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-lime/25 blur-3xl" />
-      <div className="pointer-events-none absolute -right-20 top-40 h-72 w-72 rounded-full bg-coral/15 blur-3xl" />
+      <Orb className="-left-24 top-10" color="var(--sky)" size={360} />
+      <Orb className="-right-20 top-40" color="var(--coral)" size={320} />
+      <Constellation className="absolute right-10 top-8 hidden h-24 w-40 md:block" />
+      <Waveform className="absolute bottom-0 left-0 h-24 w-full opacity-30" />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-5 py-20 md:grid-cols-2 md:py-28">
         {/* Left: copy */}
@@ -65,27 +68,30 @@ export default function Hero() {
 
         {/* Right: Bob + mock clips */}
         <div className="relative">
-          <div className="animate-float">
-            <BobMascot size={150} className="mx-auto drop-shadow-xl" />
+          <div className="relative mx-auto h-[150px] w-[360px]">
+            <OrbitRings className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-90" size={360} />
+            <div className="animate-float absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <BobMascot size={150} className="drop-shadow-[0_0_30px_rgba(185,224,140,0.25)]" />
+            </div>
           </div>
 
-          <div className="glass shadow-float mt-6 rounded-[1.75rem] border border-white/50 p-4">
+          <div className="glass shadow-float mt-6 rounded-[1.75rem] border border-white/10 p-4">
             <div className="grid grid-cols-3 gap-3">
               {[
-                { t: "0:14", label: "Le hook 🔥", tone: "bg-lime text-ink" },
-                { t: "0:22", label: "Punchline 😂", tone: "bg-coral text-cream" },
-                { t: "0:19", label: "Le conseil 💡", tone: "bg-sky text-ink" },
+                { t: "0:14", label: "Le hook 🔥", tone: "bg-lime text-panel" },
+                { t: "0:22", label: "Punchline 😂", tone: "bg-coral text-panel" },
+                { t: "0:19", label: "Le conseil 💡", tone: "bg-sky text-panel" },
               ].map((c, i) => (
                 <div
                   key={i}
-                  className="aspect-[9/16] overflow-hidden rounded-2xl bg-ink p-1.5 shadow-lg ring-1 ring-ink/10 transition-transform hover:-translate-y-1.5"
+                  className="aspect-[9/16] overflow-hidden rounded-2xl bg-panel p-1.5 shadow-lg ring-1 ring-ink/10 transition-transform hover:-translate-y-1.5"
                   style={{ transform: `rotate(${i === 1 ? 0 : i === 0 ? -3 : 3}deg)` }}
                 >
                   <div className={`flex h-full flex-col justify-between rounded-[0.85rem] ${c.tone} p-2`}>
-                    <span className="self-start rounded-md bg-ink/75 px-1.5 py-0.5 text-[10px] font-semibold text-cream">
+                    <span className="self-start rounded-md bg-panel/75 px-1.5 py-0.5 text-[10px] font-semibold text-ink">
                       {c.t}
                     </span>
-                    <span className="rounded-md bg-ink px-1.5 py-1 text-center text-[11px] font-semibold text-lime">
+                    <span className="rounded-md bg-lime px-1.5 py-1 text-center text-[11px] font-semibold text-panel">
                       {c.label}
                     </span>
                   </div>

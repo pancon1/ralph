@@ -120,7 +120,7 @@ export default function AuthForm() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-full bg-ink py-3.5 text-sm font-semibold text-lime shadow-soft transition-transform enabled:hover:-translate-y-0.5 disabled:opacity-50 disabled:shadow-none"
+            className="w-full rounded-full bg-lime py-3.5 text-sm font-semibold text-panel shadow-soft transition-transform enabled:hover:-translate-y-0.5 disabled:opacity-50 disabled:shadow-none"
           >
             {loading
               ? "…"

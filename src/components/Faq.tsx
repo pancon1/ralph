@@ -42,7 +42,7 @@ export default function Faq() {
             >
               <summary className="flex items-center justify-between font-display text-lg font-bold marker:content-none">
                 {item.q}
-                <span className="ml-4 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-lime text-ink transition-transform group-open:rotate-45">
+                <span className="ml-4 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-lime text-panel transition-transform group-open:rotate-45">
                   +
                 </span>
               </summary>
