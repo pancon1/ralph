@@ -19,6 +19,13 @@ function ytDlpBinary(): string {
   return found;
 }
 
+/** Resolve the bundled Deno binary (a JS runtime yt-dlp needs to extract YouTube formats). */
+function denoRuntime(): string | null {
+  const exe = process.platform === "win32" ? "deno.exe" : "deno";
+  const p = path.join(process.cwd(), "node_modules", "deno-bin", "bin", exe);
+  return existsSync(p) ? p : null;
+}
+
 /** Write BOB_YT_COOKIES to a cookies.txt file, returning its path (or null). */
 async function writeCookiesFile(workDir: string): Promise<string | null> {
   const raw = process.env.BOB_YT_COOKIES;
@@ -70,6 +77,13 @@ export async function downloadVideo(
   const cookiesPath = await writeCookiesFile(workDir);
   if (cookiesPath) {
     args.push("--cookies", cookiesPath);
+  }
+
+  // yt-dlp needs a JS runtime to extract YouTube formats ("No video formats
+  // found!" without one). Point it at the bundled Deno binary.
+  const deno = denoRuntime();
+  if (deno) {
+    args.push("--js-runtimes", `deno:${deno}`);
   }
 
   await new Promise<void>((resolve, reject) => {
