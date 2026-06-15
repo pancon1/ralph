@@ -19,6 +19,26 @@ function ytDlpBinary(): string {
   return found;
 }
 
+/** Write BOB_YT_COOKIES to a cookies.txt file, returning its path (or null). */
+async function writeCookiesFile(workDir: string): Promise<string | null> {
+  const raw = process.env.BOB_YT_COOKIES;
+  if (!raw || !raw.trim()) return null;
+
+  let content = raw;
+  // Accept a base64-encoded value (avoids newline issues in some env UIs).
+  if (!/\s/.test(raw) && /^[A-Za-z0-9+/=]+$/.test(raw) && raw.length > 100) {
+    try {
+      content = Buffer.from(raw, "base64").toString("utf8");
+    } catch {
+      content = raw;
+    }
+  }
+
+  const file = path.join(workDir, "cookies.txt");
+  await writeFile(file, content, "utf8");
+  return file;
+}
+
 /** Download a YouTube (or other supported) URL to a single combined file in workDir. */
 export async function downloadVideo(
   url: string,
@@ -44,6 +64,14 @@ export async function downloadVideo(
     template,
   ];
 
+  // YouTube blocks datacenter IPs. Supplying cookies (Netscape format) from a
+  // logged-in account lets yt-dlp pass the bot check. Set BOB_YT_COOKIES on the
+  // host (raw cookies.txt content, or base64-encoded).
+  const cookiesPath = await writeCookiesFile(workDir);
+  if (cookiesPath) {
+    args.push("--cookies", cookiesPath);
+  }
+
   await new Promise<void>((resolve, reject) => {
     const proc = spawn(bin, args, { windowsHide: true });
     let stderr = "";
@@ -53,10 +81,12 @@ export async function downloadVideo(
       if (code === 0) return resolve();
       // YouTube blocks downloads from datacenter IPs — give a clear, actionable message.
       if (/sign in to confirm|not a bot|bot|cookies/i.test(stderr)) {
+        const hasCookies = Boolean(process.env.BOB_YT_COOKIES?.trim());
         return reject(
           new Error(
-            "YouTube bloque les téléchargements depuis le serveur. " +
-              "Importe plutôt ton fichier vidéo avec le bouton 📁 (ça fonctionne parfaitement)."
+            hasCookies
+              ? "YouTube a rejeté les cookies (ils ont sûrement expiré). Ré-exporte des cookies YouTube récents, ou importe un fichier 📁."
+              : "YouTube bloque les téléchargements depuis le serveur. Importe ton fichier vidéo avec le bouton 📁, ou configure des cookies YouTube (voir COOKIES_SETUP)."
           )
         );
       }
