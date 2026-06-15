@@ -48,7 +48,7 @@ export default async function MesClipsPage() {
       <main className="mx-auto w-full max-w-6xl flex-1 px-5 py-10">
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
           <div>
-            <h1 className="font-display text-3xl font-extrabold tracking-tight">
+            <h1 className="font-display text-3xl font-semibold">
               Mes clips
             </h1>
             <p className="mt-1 text-ink-soft">
@@ -61,7 +61,7 @@ export default async function MesClipsPage() {
           </div>
           <Link
             href="/app"
-            className="rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-lime shadow-[0_4px_0_0_var(--lime-deep)] transition-transform hover:-translate-y-0.5"
+            className="rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-lime shadow-soft transition-transform hover:-translate-y-0.5"
           >
             + Nouvelle vidéo
           </Link>

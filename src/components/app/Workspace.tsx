@@ -155,7 +155,7 @@ function IdleView({
   return (
     <div className="mx-auto max-w-2xl text-center">
       <BobMascot size={96} className="mx-auto animate-float" />
-      <h1 className="mt-5 font-display text-4xl font-extrabold tracking-tight">
+      <h1 className="mt-5 font-display text-4xl font-semibold">
         Donne une vidéo à Bob 🎬
       </h1>
       <p className="mt-3 text-ink-soft">
@@ -208,7 +208,7 @@ function IdleView({
         <button
           onClick={onStart}
           disabled={!canStart}
-          className="mt-6 w-full rounded-full bg-ink py-4 text-base font-semibold text-lime shadow-[0_5px_0_0_var(--lime-deep)] transition-transform enabled:hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none"
+          className="mt-6 w-full rounded-full bg-ink py-4 text-base font-semibold text-lime shadow-soft transition-transform enabled:hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none"
         >
           ✂️ Générer mes clips
         </button>
@@ -239,7 +239,7 @@ function ProcessingView({
   return (
     <div className="mx-auto max-w-xl py-10 text-center">
       <BobMascot size={110} className="mx-auto animate-float" />
-      <h2 className="mt-6 font-display text-3xl font-extrabold tracking-tight">
+      <h2 className="mt-6 font-display text-3xl font-semibold">
         Bob travaille sur ta vidéo…
       </h2>
       <p className="mt-2 truncate text-sm text-ink-soft">{message ?? source}</p>
@@ -305,7 +305,7 @@ function ResultsView({
           <span className="inline-flex items-center gap-2 rounded-full bg-lime px-3 py-1 text-xs font-bold text-ink">
             ✨ {clips.length} clips prêts
           </span>
-          <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight">
+          <h2 className="mt-3 font-display text-3xl font-semibold">
             Voici tes meilleurs moments
           </h2>
           <p className="mt-1 truncate text-sm text-ink-soft">depuis {source}</p>
@@ -333,7 +333,7 @@ function ErrorView({ message, onReset }: { message: string; onReset: () => void 
   return (
     <div className="mx-auto max-w-lg py-16 text-center">
       <div className="text-6xl">🛠️</div>
-      <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight">
+      <h2 className="mt-4 font-display text-3xl font-semibold">
         Aïe, Bob a buté
       </h2>
       <p className="mt-3 rounded-2xl border border-ink/10 bg-card p-4 text-left text-sm text-ink-soft">
@@ -341,7 +341,7 @@ function ErrorView({ message, onReset }: { message: string; onReset: () => void 
       </p>
       <button
         onClick={onReset}
-        className="mt-6 rounded-full bg-ink px-6 py-3 font-semibold text-lime shadow-[0_4px_0_0_var(--lime-deep)] transition-transform hover:-translate-y-0.5"
+        className="mt-6 rounded-full bg-ink px-6 py-3 font-semibold text-lime shadow-soft transition-transform hover:-translate-y-0.5"
       >
         Réessayer
       </button>

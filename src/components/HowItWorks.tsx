@@ -29,10 +29,10 @@ export default function HowItWorks() {
   return (
     <section id="how" className="mx-auto max-w-6xl px-5 py-20 md:py-28">
       <div className="mx-auto max-w-2xl text-center">
-        <p className="font-display text-sm font-bold uppercase tracking-widest text-coral">
+        <p className="eyebrow">
           Comment ça marche
         </p>
-        <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+        <h2 className="mt-3 font-display text-4xl font-semibold md:text-5xl">
           De 60 minutes à 10 clips, en 4 étapes
         </h2>
       </div>
@@ -45,7 +45,7 @@ export default function HowItWorks() {
           >
             <div className="flex items-center justify-between">
               <span className="text-3xl">{s.icon}</span>
-              <span className="font-display text-3xl font-extrabold text-ink/10">
+              <span className="font-display text-3xl font-semibold text-ink/10">
                 {s.n}
               </span>
             </div>

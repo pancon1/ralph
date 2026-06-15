@@ -26,10 +26,10 @@ export default function Faq() {
     <section id="faq" className="bg-cream-deep">
       <div className="mx-auto max-w-3xl px-5 py-20 md:py-28">
         <div className="text-center">
-          <p className="font-display text-sm font-bold uppercase tracking-widest text-coral">
+          <p className="eyebrow">
             FAQ
           </p>
-          <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+          <h2 className="mt-3 font-display text-4xl font-semibold md:text-5xl">
             Les questions que tu te poses
           </h2>
         </div>

@@ -50,7 +50,7 @@ export default function ClipCard({ clip }: { clip: ClipView }) {
           <span className="rounded-lg bg-ink/80 px-2 py-1 text-[11px] font-bold text-cream">
             {clip.startLabel} · {clip.duration}
           </span>
-          <span className={`rounded-lg px-2 py-1 text-[11px] font-extrabold ${scoreColor}`}>
+          <span className={`rounded-lg px-2 py-1 text-[11px] font-semibold ${scoreColor}`}>
             {clip.score}% 🔥
           </span>
         </div>

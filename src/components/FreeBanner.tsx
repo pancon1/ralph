@@ -16,7 +16,7 @@ export default function FreeBanner() {
             <span className="inline-flex w-fit items-center gap-2 rounded-full bg-lime px-4 py-1.5 text-xs font-bold text-ink">
               💚 Notre promesse
             </span>
-            <h2 className="mt-5 font-display text-4xl font-extrabold leading-tight md:text-5xl">
+            <h2 className="mt-5 font-display text-4xl font-semibold leading-tight md:text-5xl">
               Gratuit. <br />
               Vraiment gratuit.
             </h2>
@@ -27,7 +27,7 @@ export default function FreeBanner() {
             </p>
             <a
               href="/app"
-              className="mt-7 w-fit rounded-full bg-lime px-7 py-3.5 font-semibold text-ink shadow-[0_5px_0_0_var(--lime-deep)] transition-transform hover:-translate-y-0.5"
+              className="mt-7 w-fit rounded-full bg-lime px-7 py-3.5 font-semibold text-ink shadow-soft transition-transform hover:-translate-y-0.5"
             >
               Commencer sans payer →
             </a>

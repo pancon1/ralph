@@ -34,10 +34,10 @@ export default function Features() {
     <section id="features" className="bg-cream-deep">
       <div className="mx-auto max-w-6xl px-5 py-20 md:py-28">
         <div className="max-w-2xl">
-          <p className="font-display text-sm font-bold uppercase tracking-widest text-coral">
+          <p className="eyebrow">
             Tout ce que Klap fait
           </p>
-          <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight md:text-5xl">
+          <h2 className="mt-3 font-display text-4xl font-semibold md:text-5xl">
             …mais en gratuit, et avec le sourire 😎
           </h2>
         </div>

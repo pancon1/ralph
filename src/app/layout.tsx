@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Plus_Jakarta_Sans } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+// "Classic Elegant" pairing — premium editorial serif + clean modern sans.
+const playfair = Playfair_Display({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["500", "600", "700", "800"],
+  style: ["normal", "italic"],
 });
 
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
+const inter = Inter({
+  variable: "--font-body",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -37,7 +39,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${bricolage.variable} ${jakarta.variable} h-full antialiased`}
+      className={`${playfair.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-cream text-ink">
         {children}

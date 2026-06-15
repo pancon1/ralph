@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="border-t border-ink/10 bg-cream">
       {/* big CTA */}
       <div className="mx-auto max-w-6xl px-5 py-20 text-center">
-        <h2 className="mx-auto max-w-2xl font-display text-4xl font-extrabold tracking-tight md:text-6xl">
+        <h2 className="mx-auto max-w-2xl font-display text-4xl font-semibold md:text-6xl">
           Prêt à devenir viral{" "}
           <span className="relative whitespace-nowrap">
             <span className="relative z-10">avec Bob ?</span>
@@ -17,7 +17,7 @@ export default function Footer() {
         </p>
         <Link
           href="/app"
-          className="mt-8 inline-block rounded-full bg-ink px-8 py-4 text-lg font-semibold text-lime shadow-[0_5px_0_0_var(--lime-deep)] transition-transform hover:-translate-y-0.5"
+          className="mt-8 inline-block rounded-full bg-ink px-8 py-4 text-lg font-semibold text-lime shadow-soft transition-transform hover:-translate-y-0.5"
         >
           Découper ma vidéo gratuitement →
         </Link>
@@ -27,10 +27,10 @@ export default function Footer() {
       <div className="border-t border-ink/10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-8 sm:flex-row">
           <div className="flex items-center gap-2">
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-ink text-lime font-display font-extrabold">
+            <span className="grid h-8 w-8 place-items-center rounded-lg bg-ink text-lime font-display font-semibold">
               B
             </span>
-            <span className="font-display text-lg font-extrabold">
+            <span className="font-display text-lg font-semibold">
               Bob<span className="text-coral">.io</span>
             </span>
           </div>

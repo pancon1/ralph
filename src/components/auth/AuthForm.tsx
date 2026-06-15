@@ -72,7 +72,7 @@ export default function AuthForm() {
           <Link href="/">
             <BobMascot size={76} className="mx-auto" />
           </Link>
-          <h1 className="mt-4 font-display text-2xl font-extrabold tracking-tight">
+          <h1 className="mt-4 font-display text-2xl font-semibold">
             {mode === "signin" ? "Bon retour 👋" : "Crée ton compte"}
           </h1>
           <p className="mt-1 text-sm text-ink-soft">
@@ -120,7 +120,7 @@ export default function AuthForm() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-full bg-ink py-3.5 text-sm font-semibold text-lime shadow-[0_4px_0_0_var(--lime-deep)] transition-transform enabled:hover:-translate-y-0.5 disabled:opacity-50 disabled:shadow-none"
+            className="w-full rounded-full bg-ink py-3.5 text-sm font-semibold text-lime shadow-soft transition-transform enabled:hover:-translate-y-0.5 disabled:opacity-50 disabled:shadow-none"
           >
             {loading
               ? "…"

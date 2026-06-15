@@ -14,7 +14,7 @@ export default async function LoginPage() {
       <main className="grid min-h-screen place-items-center bg-grid px-5 text-center">
         <div className="max-w-md">
           <BobMascot size={90} className="mx-auto" />
-          <h1 className="mt-4 font-display text-2xl font-extrabold">
+          <h1 className="mt-4 font-display text-2xl font-semibold">
             Les comptes arrivent bientôt
           </h1>
           <p className="mt-2 text-ink-soft">

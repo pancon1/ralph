@@ -1,17 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  /* Bob.io brand palette — bright, sunny, friendly (the opposite of Klap's dark/techy look) */
-  --cream: #faf7ef;
-  --cream-deep: #f1ecdd;
-  --ink: #15140d;
-  --ink-soft: #4a4838;
+  /* Bob.io — warm, premium palette. Keeps the sunny soul, refined for elegance. */
+  --cream: #faf8f2;
+  --cream-deep: #f0ebdd;
+  --ink: #161512;
+  --ink-soft: #5b5749;
+  --muted: #8a8473;
   --lime: #c8f750;
-  --lime-deep: #aee62f;
-  --coral: #ff6b4a;
+  --lime-deep: #a7df2c;
+  --coral: #f76a4b;
   --sky: #5ac8fa;
   --card: #ffffff;
-  --border: #1514140f;
+  --border: color-mix(in srgb, var(--ink) 9%, transparent);
 
   --background: var(--cream);
   --foreground: var(--ink);
@@ -24,30 +25,37 @@
   --color-cream-deep: var(--cream-deep);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
   --color-lime: var(--lime);
   --color-lime-deep: var(--lime-deep);
   --color-coral: var(--coral);
   --color-sky: var(--sky);
   --color-card: var(--card);
-  --font-sans: var(--font-jakarta);
-  --font-display: var(--font-bricolage);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
 }
 
 * {
-  border-color: color-mix(in srgb, var(--ink) 10%, transparent);
+  border-color: var(--border);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-jakarta), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-feature-settings: "cv11", "ss01";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
+/* Elegant editorial serif for headings (Playfair Display) */
 .font-display {
-  font-family: var(--font-bricolage), system-ui, sans-serif;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display), Georgia, serif;
+  letter-spacing: -0.01em;
+}
+.font-display-italic {
+  font-family: var(--font-display), Georgia, serif;
+  font-style: italic;
 }
 
 /* Elegant layered shadows — soft, multi-stop elevation */
@@ -101,6 +109,85 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* ---- Premium component utilities ---- */
+
+/* Primary CTA — refined, elevated (replaces the playful hard-offset button) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: var(--ink);
+  color: var(--lime);
+  font-weight: 600;
+  padding: 0.85rem 1.6rem;
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--ink) 12%, transparent),
+    0 10px 24px color-mix(in srgb, var(--ink) 14%, transparent);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 2px 4px color-mix(in srgb, var(--ink) 14%, transparent),
+    0 18px 38px color-mix(in srgb, var(--ink) 20%, transparent);
+}
+
+/* Secondary — outlined, understated */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  color: var(--ink);
+  font-weight: 600;
+  padding: 0.85rem 1.6rem;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.btn-ghost:hover {
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+  border-color: color-mix(in srgb, var(--ink) 30%, transparent);
+}
+
+/* Pill chip / eyebrow label */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+}
+
+/* Premium card */
+.card-premium {
+  border-radius: 1.5rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--ink) 4%, transparent),
+    0 8px 24px color-mix(in srgb, var(--ink) 5%, transparent);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Eyebrow (small uppercase label above headings) */
+.eyebrow {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--coral);
 }
 
 @keyframes float {

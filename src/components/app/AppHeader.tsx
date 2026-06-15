@@ -11,10 +11,10 @@ export default async function AppHeader() {
     <header className="glass border-b border-ink/10">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
         <Link href="/" className="flex items-center gap-2">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-ink text-lime font-display text-lg font-extrabold">
+          <span className="grid h-9 w-9 place-items-center rounded-xl bg-ink text-lime font-display text-lg font-semibold">
             B
           </span>
-          <span className="font-display text-xl font-extrabold tracking-tight">
+          <span className="font-display text-xl font-semibold">
             Bob<span className="text-coral">.io</span>
           </span>
           <span className="ml-1 rounded-full bg-lime px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-ink">

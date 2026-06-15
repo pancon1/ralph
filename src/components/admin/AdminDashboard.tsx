@@ -85,10 +85,10 @@ export default function AdminDashboard() {
       <header className="sticky top-0 z-40 border-b border-ink/10 bg-cream/85 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
           <div className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-ink text-lime font-display text-lg font-extrabold">
+            <span className="grid h-9 w-9 place-items-center rounded-xl bg-ink text-lime font-display text-lg font-semibold">
               B
             </span>
-            <span className="font-display text-xl font-extrabold tracking-tight">
+            <span className="font-display text-xl font-semibold">
               Bob<span className="text-coral">.io</span>
             </span>
             <span className="ml-1 rounded-full bg-coral/90 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cream">
@@ -113,7 +113,7 @@ export default function AdminDashboard() {
       </header>
 
       <main className="mx-auto max-w-6xl px-5 py-8">
-        <h1 className="font-display text-3xl font-extrabold tracking-tight">
+        <h1 className="font-display text-3xl font-semibold">
           Tableau de bord
         </h1>
         <p className="mt-1 text-ink-soft">Gère, surveille et sécurise Bob.io.</p>
@@ -163,7 +163,7 @@ function StatsRow({ stats }: { stats: Stats }) {
       {cards.map((c) => (
         <div key={c.label} className="rounded-2xl border border-ink/10 bg-card p-5">
           <span className="text-2xl">{c.emoji}</span>
-          <p className="mt-2 font-display text-3xl font-extrabold">{c.value}</p>
+          <p className="mt-2 font-display text-3xl font-semibold">{c.value}</p>
           <p className="text-sm text-ink-soft">{c.label}</p>
         </div>
       ))}
@@ -262,7 +262,7 @@ function GuardianPanel() {
           <button
             onClick={scan}
             disabled={scanning}
-            className="mt-4 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-lime shadow-[0_4px_0_0_var(--lime-deep)] transition-transform enabled:hover:-translate-y-0.5 disabled:opacity-50"
+            className="mt-4 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-lime shadow-soft transition-transform enabled:hover:-translate-y-0.5 disabled:opacity-50"
           >
             {scanning ? "Analyse en cours…" : "🔍 Lancer un scan"}
           </button>
@@ -283,7 +283,7 @@ function GuardianPanel() {
               { k: "Obsolètes", v: report.outdated.length, c: "text-ink" },
             ].map((x) => (
               <div key={x.k} className="rounded-xl bg-cream py-3">
-                <p className={`font-display text-2xl font-extrabold ${x.c}`}>{x.v}</p>
+                <p className={`font-display text-2xl font-semibold ${x.c}`}>{x.v}</p>
                 <p className="text-[11px] text-ink-soft">{x.k}</p>
               </div>
             ))}

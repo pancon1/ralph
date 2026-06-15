@@ -38,7 +38,7 @@ export default function AdminLogin() {
         className="w-full max-w-sm rounded-3xl border border-ink/10 bg-card p-8 text-center shadow-xl"
       >
         <BobMascot size={84} className="mx-auto" />
-        <h1 className="mt-4 font-display text-2xl font-extrabold tracking-tight">
+        <h1 className="mt-4 font-display text-2xl font-semibold">
           Espace administrateur
         </h1>
         <p className="mt-1 text-sm text-ink-soft">Réservé au gestionnaire de Bob.io</p>
@@ -57,7 +57,7 @@ export default function AdminLogin() {
         <button
           type="submit"
           disabled={loading || !password}
-          className="mt-5 w-full rounded-full bg-ink py-3.5 text-sm font-semibold text-lime shadow-[0_4px_0_0_var(--lime-deep)] transition-transform enabled:hover:-translate-y-0.5 disabled:opacity-40 disabled:shadow-none"
+          className="mt-5 w-full rounded-full bg-ink py-3.5 text-sm font-semibold text-lime shadow-soft transition-transform enabled:hover:-translate-y-0.5 disabled:opacity-40 disabled:shadow-none"
         >
           {loading ? "Connexion…" : "Se connecter"}
         </button>
