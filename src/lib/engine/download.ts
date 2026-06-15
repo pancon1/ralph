@@ -96,18 +96,8 @@ export async function downloadVideo(
     proc.on("error", reject);
     proc.on("close", (code) => {
       if (code === 0) return resolve();
-      // YouTube blocks downloads from datacenter IPs — give a clear, actionable message.
-      if (/sign in to confirm|not a bot|bot|cookies/i.test(stderr)) {
-        const hasCookies = Boolean(process.env.BOB_YT_COOKIES?.trim());
-        return reject(
-          new Error(
-            hasCookies
-              ? "YouTube a rejeté les cookies (ils ont sûrement expiré). Ré-exporte des cookies YouTube récents, ou importe un fichier 📁."
-              : "YouTube bloque les téléchargements depuis le serveur. Importe ton fichier vidéo avec le bouton 📁, ou configure des cookies YouTube (voir COOKIES_SETUP)."
-          )
-        );
-      }
-      reject(new Error(`Échec du téléchargement : ${stderr.slice(-300)}`));
+      // Surface the raw yt-dlp error so we can diagnose precisely.
+      reject(new Error(`yt-dlp (${code}): ${stderr.slice(-500)}`));
     });
   });
 
