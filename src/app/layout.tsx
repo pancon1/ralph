@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, Space_Mono } from "next/font/google";
+import { Fredoka, Nunito, Space_Mono } from "next/font/google";
 import "./globals.css";
 
-// Futuristic "Tech Startup" pairing — geometric techy display + clean body + mono labels.
-const spaceGrotesk = Space_Grotesk({
+// Retro "Playful Creative" pairing — chunky rounded display + soft rounded body.
+const fredoka = Fredoka({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600", "700"],
 });
 
-const inter = Inter({
+const nunito = Nunito({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const spaceMono = Space_Mono({
@@ -44,7 +44,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${spaceGrotesk.variable} ${inter.variable} ${spaceMono.variable} h-full antialiased`}
+      className={`${fredoka.variable} ${nunito.variable} ${spaceMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-cream text-ink">
         {children}

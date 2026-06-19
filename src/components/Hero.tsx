@@ -1,20 +1,22 @@
 import Link from "next/link";
 import BobMascot from "./BobMascot";
-import { Orb, Waveform, OrbitRings, Constellation } from "./Decor";
+import { Squiggle, ZigZag, StarBurst, Dots, HalfCircle, Planet } from "./Decor";
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-wash">
-      <div className="absolute inset-0 bg-grid-fade" />
-      <Orb className="-left-24 top-10" color="var(--sky)" size={360} />
-      <Orb className="-right-20 top-40" color="var(--coral)" size={320} />
-      <Constellation className="absolute right-10 top-8 hidden h-24 w-40 md:block" />
-      <Waveform className="absolute bottom-0 left-0 h-24 w-full opacity-30" />
+      <div className="absolute inset-0 bg-grid-fade opacity-70" />
+      {/* scattered Memphis shapes */}
+      <StarBurst className="absolute left-[6%] top-24 hidden md:block" color="var(--sky)" size={54} />
+      <Squiggle className="absolute right-[8%] top-16 hidden h-7 w-32 md:block" color="var(--coral)" />
+      <ZigZag className="absolute left-1/2 top-6 hidden h-6 w-40 md:block" color="var(--lime)" />
+      <Dots className="absolute bottom-8 left-[4%] hidden h-20 w-28 md:block" />
+      <HalfCircle className="absolute -right-2 bottom-24 hidden md:block" color="var(--sky)" size={80} />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-5 py-20 md:grid-cols-2 md:py-28">
         {/* Left: copy */}
         <div>
-          <span className="chip shadow-soft">
+          <span className="chip">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-coral opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-coral" />
@@ -22,13 +24,13 @@ export default function Hero() {
             100% gratuit — sans carte bancaire
           </span>
 
-          <h1 className="mt-6 font-display text-[2.7rem] font-semibold leading-[1.08] md:text-[3.9rem]">
+          <h1 className="mt-6 font-display text-[2.7rem] font-semibold leading-[1.05] md:text-[4rem]">
             Une longue vidéo.
             <br />
             10 clips{" "}
             <span className="relative whitespace-nowrap">
-              <span className="font-display-italic">viraux</span>
-              <span className="absolute -bottom-1 left-0 h-[7px] w-full -rotate-1 rounded-full bg-lime" />
+              <span className="relative z-10">viraux</span>
+              <span className="absolute -bottom-1 left-0 z-0 h-4 w-full -rotate-1 rounded-md bg-lime" />
             </span>
             .
           </h1>
@@ -56,7 +58,7 @@ export default function Hero() {
               { n: "~3 min", l: "par vidéo" },
             ].map((s, i) => (
               <div key={s.l} className="flex items-center gap-8">
-                {i > 0 && <div className="h-9 w-px bg-ink/10" />}
+                {i > 0 && <div className="h-9 w-0.5 bg-ink/15" />}
                 <div>
                   <p className="font-display text-3xl font-semibold text-ink">{s.n}</p>
                   <p className="mt-0.5 text-sm text-ink-soft">{s.l}</p>
@@ -68,30 +70,31 @@ export default function Hero() {
 
         {/* Right: Bob + mock clips */}
         <div className="relative">
-          <div className="relative mx-auto h-[150px] w-[360px]">
-            <OrbitRings className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-90" size={360} />
+          <div className="relative mx-auto h-[160px] w-[360px]">
+            <Planet className="absolute left-2 top-0 hidden md:block" color="var(--sky)" size={76} />
+            <StarBurst className="absolute right-6 top-2 hidden md:block" color="var(--lime)" size={48} />
             <div className="animate-float absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-              <BobMascot size={150} className="drop-shadow-[0_0_30px_rgba(185,224,140,0.25)]" />
+              <BobMascot size={150} />
             </div>
           </div>
 
-          <div className="glass shadow-float mt-6 rounded-[1.75rem] border border-white/10 p-4">
+          <div className="card-premium mt-6 p-4">
             <div className="grid grid-cols-3 gap-3">
               {[
-                { t: "0:14", label: "Le hook 🔥", tone: "bg-lime text-panel" },
-                { t: "0:22", label: "Punchline 😂", tone: "bg-coral text-panel" },
-                { t: "0:19", label: "Le conseil 💡", tone: "bg-sky text-panel" },
+                { t: "0:14", label: "Le hook 🔥", tone: "bg-lime" },
+                { t: "0:22", label: "Punchline 😂", tone: "bg-coral" },
+                { t: "0:19", label: "Le conseil 💡", tone: "bg-sky" },
               ].map((c, i) => (
                 <div
                   key={i}
-                  className="aspect-[9/16] overflow-hidden rounded-2xl bg-panel p-1.5 shadow-lg ring-1 ring-ink/10 transition-transform hover:-translate-y-1.5"
+                  className="aspect-[9/16] overflow-hidden rounded-xl border-2 border-ink bg-panel p-1.5 transition-transform hover:-translate-y-1.5"
                   style={{ transform: `rotate(${i === 1 ? 0 : i === 0 ? -3 : 3}deg)` }}
                 >
-                  <div className={`flex h-full flex-col justify-between rounded-[0.85rem] ${c.tone} p-2`}>
-                    <span className="self-start rounded-md bg-panel/75 px-1.5 py-0.5 text-[10px] font-semibold text-ink">
+                  <div className={`flex h-full flex-col justify-between rounded-lg ${c.tone} p-2`}>
+                    <span className="self-start rounded-md bg-panel px-1.5 py-0.5 text-[10px] font-bold text-cream">
                       {c.t}
                     </span>
-                    <span className="rounded-md bg-lime px-1.5 py-1 text-center text-[11px] font-semibold text-panel">
+                    <span className="rounded-md bg-panel px-1.5 py-1 text-center text-[11px] font-bold text-cream">
                       {c.label}
                     </span>
                   </div>

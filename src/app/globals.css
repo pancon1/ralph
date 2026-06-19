@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  /* Bob.io — soft futuristic. Deep desaturated slate base + muted sci-fi accents. */
-  --cream: #0c0f17;        /* page background (deep slate-indigo) */
-  --cream-deep: #11151f;   /* secondary surfaces */
-  --card: #161b28;         /* cards / panels */
-  --panel: #090b12;        /* darkest frames (clip thumbs, etc.) */
-  --ink: #e8ebf4;          /* primary text (soft off-white) */
-  --ink-soft: #969cb4;     /* secondary text */
-  --muted: #676d84;        /* faint text */
-  --lime: #b9e08c;         /* primary accent — muted mint-lime */
-  --lime-deep: #9bca6b;
-  --coral: #9d95e6;        /* secondary accent — muted periwinkle */
-  --sky: #74c6d0;          /* tertiary accent — muted teal */
-  --border: rgba(255, 255, 255, 0.09);
+  /* Bob.io — retro 80s/90s. Warm cream paper + bold Memphis accents. */
+  --cream: #f6ecd2;        /* page background (warm cream paper) */
+  --cream-deep: #eddfbf;   /* secondary surfaces */
+  --card: #fffaf0;         /* cards (paper white) */
+  --panel: #271d12;        /* dark frames / dark text on accents */
+  --ink: #271d12;          /* primary text (deep retro espresso) */
+  --ink-soft: #7c6a4f;     /* secondary text */
+  --muted: #a3906f;        /* faint text */
+  --lime: #f2683a;         /* primary accent — burnt orange */
+  --lime-deep: #d8551f;
+  --coral: #1f9e94;        /* secondary accent — retro teal */
+  --sky: #edb22e;          /* tertiary accent — mustard */
+  --border: rgba(39, 29, 18, 0.85);
 
   --background: var(--cream);
   --foreground: var(--ink);
@@ -51,10 +51,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Futuristic geometric display (Space Grotesk) */
+/* Chunky rounded retro display (Fredoka) */
 .font-display {
   font-family: var(--font-display), system-ui, sans-serif;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 .font-display-italic {
   font-family: var(--font-display), system-ui, sans-serif;
@@ -64,144 +64,141 @@ body {
   font-family: var(--font-mono), ui-monospace, monospace;
 }
 
-/* Depth shadows for dark surfaces */
+/* Retro hard offset shadows — the 80s/90s signature */
 .shadow-soft {
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.4),
-    0 10px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 3px 3px 0 var(--ink);
 }
 .shadow-float {
-  box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.45),
-    0 24px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: 6px 6px 0 var(--ink);
 }
-
-/* Subtle accent glow */
 .glow-lime {
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--lime) 30%, transparent),
-    0 8px 40px color-mix(in srgb, var(--lime) 22%, transparent);
+  box-shadow: 5px 5px 0 var(--lime-deep);
 }
 .glow-violet {
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--coral) 30%, transparent),
-    0 8px 40px color-mix(in srgb, var(--coral) 22%, transparent);
+  box-shadow: 5px 5px 0 var(--coral);
 }
 
-/* Frosted-glass surface (dark) */
+/* Frosted paper header */
 .glass {
-  background: color-mix(in srgb, var(--card) 65%, transparent);
-  backdrop-filter: blur(16px) saturate(1.2);
-  -webkit-backdrop-filter: blur(16px) saturate(1.2);
-  border-color: var(--border);
+  background: color-mix(in srgb, var(--cream) 80%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-/* Technical grid texture */
+/* Retro polka-dot texture */
 .bg-grid {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 52px 52px;
+  background-image: radial-gradient(color-mix(in srgb, var(--ink) 14%, transparent) 1.5px, transparent 1.6px);
+  background-size: 22px 22px;
 }
 .bg-grid-fade {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-  background-size: 52px 52px;
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 55%, transparent 100%);
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 55%, transparent 100%);
+  background-image: radial-gradient(color-mix(in srgb, var(--ink) 14%, transparent) 1.5px, transparent 1.6px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 50%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 50%, transparent 100%);
 }
 
-/* Aurora wash — soft desaturated glows for hero / section backdrops */
+/* Warm sunburst wash for hero / section backdrops */
 .bg-wash {
   background:
-    radial-gradient(50% 50% at 12% 0%, color-mix(in srgb, var(--sky) 18%, transparent), transparent 70%),
-    radial-gradient(45% 45% at 92% 10%, color-mix(in srgb, var(--coral) 18%, transparent), transparent 70%),
-    radial-gradient(50% 60% at 60% 100%, color-mix(in srgb, var(--lime) 12%, transparent), transparent 70%);
+    radial-gradient(40% 55% at 12% 0%, color-mix(in srgb, var(--sky) 35%, transparent), transparent 70%),
+    radial-gradient(40% 50% at 92% 8%, color-mix(in srgb, var(--lime) 28%, transparent), transparent 70%),
+    radial-gradient(45% 55% at 65% 100%, color-mix(in srgb, var(--coral) 22%, transparent), transparent 70%);
+}
+
+/* Grain / paper texture overlay (apply on a positioned ::before or element) */
+.bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.05;
 }
 
 /* Gradient text accent */
 .text-gradient {
-  background: linear-gradient(100deg, var(--lime), var(--sky) 60%, var(--coral));
+  background: linear-gradient(100deg, var(--lime), var(--sky) 55%, var(--coral));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* ---- Premium component utilities ---- */
+/* ---- Retro component utilities ---- */
 
-/* Primary CTA — glowing muted-mint accent on dark */
+/* Primary CTA — bold orange block with hard offset shadow */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border-radius: 9999px;
+  border-radius: 0.85rem;
+  border: 2.5px solid var(--ink);
   background: var(--lime);
-  color: #0c0f17;
+  color: var(--panel);
+  font-family: var(--font-display), sans-serif;
   font-weight: 600;
-  padding: 0.85rem 1.6rem;
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--lime) 50%, transparent),
-    0 10px 34px color-mix(in srgb, var(--lime) 28%, transparent);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  padding: 0.8rem 1.6rem;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 .btn-primary:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.06);
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--lime) 60%, transparent),
-    0 16px 46px color-mix(in srgb, var(--lime) 40%, transparent);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ink);
 }
 
-/* Secondary — outlined glass */
+/* Secondary — outlined block */
 .btn-ghost {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border-radius: 9999px;
-  border: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
+  border-radius: 0.85rem;
+  border: 2.5px solid var(--ink);
+  background: var(--card);
   color: var(--ink);
+  font-family: var(--font-display), sans-serif;
   font-weight: 600;
-  padding: 0.85rem 1.6rem;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  padding: 0.8rem 1.6rem;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 .btn-ghost:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: color-mix(in srgb, var(--ink) 38%, transparent);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
 }
 
-/* Pill chip / eyebrow label */
+/* Sticker chip / pill */
 .chip {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   border-radius: 9999px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.03);
-  padding: 0.4rem 0.9rem;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.02em;
-  color: var(--ink-soft);
-}
-
-/* Surface card */
-.card-premium {
-  border-radius: 1.5rem;
-  border: 1px solid var(--border);
+  border: 2px solid var(--ink);
   background: var(--card);
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.4),
-    0 12px 30px rgba(0, 0, 0, 0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  padding: 0.35rem 0.85rem;
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
 }
 
-/* Eyebrow (small uppercase mono label above headings) */
+/* Block card — bold border + hard offset shadow */
+.card-premium {
+  border-radius: 1.25rem;
+  border: 2.5px solid var(--ink);
+  background: var(--card);
+  box-shadow: 5px 5px 0 var(--ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Eyebrow (bold uppercase label above headings) */
 .eyebrow {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
-  font-weight: 400;
-  letter-spacing: 0.22em;
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--coral);
+  color: var(--lime-deep);
 }
 
 @keyframes float {
